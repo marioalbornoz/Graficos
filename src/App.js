@@ -27,14 +27,12 @@ function App() {
       <Container maxWidth="false">
         <div className={classes.root}>
           <Grid container spacing={9}>
-            <Grid items xs={2}></Grid>
-            <Grid item xs={8} alignContent="center" justifyContent="center">
-              <Paper className={classes.paper}>
-                xs=8 lore dsjndsdjdsndjsndjdn
-              </Paper>
+            <Grid items xs={1}></Grid>
+            <Grid item xs={10} alignContent="center" justifyContent="center">
+              
               <VerticalBar />
             </Grid>
-            <Grid items xs={2}></Grid>
+            <Grid items xs={1}></Grid>
             {/* <Grid item xs={6}>
               <Paper className={classes.paper}>xs=6</Paper>
             </Grid>
