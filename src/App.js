@@ -4,6 +4,7 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Navbar from "./components/Navbar";
 import { Container } from "@material-ui/core";
+import VerticalBar from "./components/VerticalBar";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,9 +32,10 @@ function App() {
               <Paper className={classes.paper}>
                 xs=8 lore dsjndsdjdsndjsndjdn
               </Paper>
+              <VerticalBar />
             </Grid>
             <Grid items xs={2}></Grid>
-            <Grid item xs={6}>
+            {/* <Grid item xs={6}>
               <Paper className={classes.paper}>xs=6</Paper>
             </Grid>
             <Grid item xs={6}>
@@ -50,7 +52,7 @@ function App() {
             </Grid>
             <Grid item xs={3}>
               <Paper className={classes.paper}>xs=3</Paper>
-            </Grid>
+            </Grid> */}
           </Grid>
         </div>
       </Container>
