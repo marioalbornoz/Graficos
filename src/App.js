@@ -5,6 +5,7 @@ import Grid from "@material-ui/core/Grid";
 import Navbar from "./components/Navbar";
 import { Container } from "@material-ui/core";
 import VerticalBar from "./components/VerticalBar";
+import IntervalBar from "./components/IntervalBar";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -15,7 +16,6 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     textAlign: "center",
     color: theme.palette.text.secondary,
-    height: 140,
   },
 }));
 
@@ -27,30 +27,52 @@ function App() {
       <Container maxWidth="false">
         <div className={classes.root}>
           <Grid container spacing={9}>
-            <Grid items xs={1}></Grid>
-            <Grid item xs={10} alignContent="center" justifyContent="center">
-              
+            <Grid items xs={2}></Grid>
+            <Grid item xs={8} alignContent="center" justifyContent="center">
+              {/* <Paper className={classes.paper}>
+                xs=8 lore dsjndsdjdsndjsndjdn
+              </Paper> */}
               <VerticalBar />
+              <IntervalBar />
+              {/* <Chartbar /> */}
             </Grid>
-            <Grid items xs={1}></Grid>
-            {/* <Grid item xs={6}>
-              <Paper className={classes.paper}>xs=6</Paper>
+            <Grid items xs={2}></Grid>
+            <Grid item xs={1}>
+              <Paper className={classes.paper}>xs=1</Paper>
             </Grid>
-            <Grid item xs={6}>
-              <Paper className={classes.paper}>xs=6</Paper>
+            <Grid item xs={1}>
+              <Paper className={classes.paper}>xs=1</Paper>
             </Grid>
-            <Grid item xs={3}>
-              <Paper className={classes.paper}>xs=3</Paper>
+            <Grid item xs={1}>
+              <Paper className={classes.paper}>xs=1</Paper>
             </Grid>
-            <Grid item xs={3}>
-              <Paper className={classes.paper}>xs=3</Paper>
+            <Grid item xs={1}>
+              <Paper className={classes.paper}>xs=1</Paper>
             </Grid>
-            <Grid item xs={3}>
-              <Paper className={classes.paper}>xs=3</Paper>
+            <Grid item xs={1}>
+              <Paper className={classes.paper}>xs=1</Paper>
             </Grid>
-            <Grid item xs={3}>
-              <Paper className={classes.paper}>xs=3</Paper>
-            </Grid> */}
+            <Grid item xs={1}>
+              <Paper className={classes.paper}>xs=1</Paper>
+            </Grid>
+            <Grid item xs={1}>
+              <Paper className={classes.paper}>xs=1</Paper>
+            </Grid>
+            <Grid item xs={1}>
+              <Paper className={classes.paper}>xs=1</Paper>
+            </Grid>
+            <Grid item xs={1}>
+              <Paper className={classes.paper}>xs=1</Paper>
+            </Grid>
+            <Grid item xs={1}>
+              <Paper className={classes.paper}>xs=1</Paper>
+            </Grid>
+            <Grid item xs={1}>
+              <Paper className={classes.paper}>xs=1</Paper>
+            </Grid>
+            <Grid item xs={1}>
+              <Paper className={classes.paper}>xs=1</Paper>
+            </Grid>
           </Grid>
         </div>
       </Container>
