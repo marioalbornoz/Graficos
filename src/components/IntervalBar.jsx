@@ -1,75 +1,132 @@
-import React, { useState, useEffect } from 'react';
-import { Column, G2} from '@ant-design/charts';
+import React from 'react';
+import { Column} from '@ant-design/charts';
 
-const IntervalBar: React.FC = () => {
-    G2.registerInteraction('element-link', {
-        start: [
-            {
-                trigger: 'interval:mouseenter',
-                action: 'element-link-by-color:link',
-            },
-        ],
-        end: [
-            {
-                trigger: 'interval:mouseleave',
-                action: 'element-link-by-color:unlink',
-            },
-        ],
-    });
+const IntervalBar: React.FC = ({area, setArea,color, setColor}) => {
+
 
   var data = [
     {
-      type: '分类一',
-      values: [76, 100],
+      // type: '分类一',
+      type: 'Finalizado',
+      values: [0, 56],
+      color: '#173B27'
     },
     {
-      type: '分类二',
-      values: [56, 75],
+      type: 'SIN_SALDO',
+      values: [56, 60],
+      color: '#5EF0F2'
     },
     {
-      type: '分类三',
-      values: [38, 56],
+      type: 'SIN_PKT',
+      values: [61, 67],
+      color:'#60DBBB'
+    },{
+      type: 'LPN-BLOQ',
+      values: [68, 70],
+    },
+     {
+      type: 'SKU-CERTIFICACION_CALIDAD',
+      values: [71, 73],
     },
     {
-      type: '分类四',
-      values: [30, 37],
+      type: 'DESCUADRE_INV_WMOS/ODBMS',
+      values: [74, 79],
     },
     {
-      type: '分类五',
-      values: [25, 36],
+      type: 'PEND_PICKING/DAÑO',
+      values: [80, 85],
     },
     {
-      type: '分类六',
-      values: [1, 24],
+      type: 'ATRASO_PROV',
+      values: [86, 90],
     },
-    // {
-    //   type: '分类七',
-    //   values: [18, 56],
-    // },
-    // {
-    //   type: '分类八',
-    //   values: [18, 34],
-    // },
+    {
+      type: 'SIN_OC',
+      values: [91, 95],
+    },
+    {
+      type: 'SIN_OLEAR',
+      values: [96, 100],
+    },
+   
   ];
   var config = {
     data: data,
-    xField: 'type',
-    yField: 'values',
-    isRange: true,
-    seriesField: 'type',
-    label: {
-      position: 'middle',
-      content: function content(item) {
-        return ''.concat(((item.values[1]-item.values[0])).toFixed(1), '%');
+    xField: "type",
+    yField: "values",
+    xAxis: {
+      label: {
+        autoRotate: true,
+        autoHide: false,
+        autoEllipsis: false,
+      },
+      tickCount: data.length,
     },
-      layout: [{ type: 'adjust-color' }],
+    isRange: true,
+    seriesField: "type",
+    // interactions: [
+    //   { type: "element-highlight-by-color" },
+    //   { type: "element-link" },
+    // ],
+    label: {
+      position: "middle",
+      content: function content(item) {
+        return "".concat((item.values[1] - item.values[0]).toFixed(1), "%");
+      },
+      layout: [{ type: "adjust-color" }, { type: 'element-active' }, { type: 'brush' }],
+      style: { fill: '#fff' },
     },
     color: function color(_ref) {
-        var type = _ref.type;
-        return type === '分类二' ? '#FAAD14' : '#5B8FF9';
+      var type = _ref.type;
+      let dataFilter= data.filter(la => la.type === type)
+      console.log('====================================');
+      console.log(dataFilter[0].color);
+      console.log('====================================');
+      return type ? dataFilter[0].color: "#5B8FF9";
+    },
+    tooltip: {
+      customContent: (title, items) => {
+        return (
+          <>
+            <h5 style={{ marginTop: 16 }}>{title}</h5>
+            <ul style={{ paddingLeft: 0 }}>
+              {items?.map((item, index) => {
+                const { name, value, color } = item;
+                return (
+                  <li
+                    key={item.year}
+                    className="g2-tooltip-list-item"
+                    data-index={index}
+                    style={{ marginBottom: 4, display: 'flex', alignItems: 'center' }}
+                  >
+                    <span className="g2-tooltip-marker" style={{ backgroundColor: color }}></span>
+                    <span
+                      style={{ display: 'inline-flex', flex: 1, justifyContent: 'space-between' }}
+                    >
+                      <span style={{ margiRight: 16 }}>{name}:</span>
+                      <span className="g2-tooltip-list-item-value">{value}</span>
+                    </span>
+                  </li>
+                );
+              })}
+            </ul>
+          </>
+        );
       },
+    },
   };
-  return <Column {...config} />;
+  return <> <Column {...config} height={600}  onReady={(plot) => {
+    plot.chart.on('plot:click', (evt) => {
+      const { x, y } = evt;
+      console.log(plot.chart.getTooltipItems({ x, y }));
+      if(plot.chart.getTooltipItems({ x, y })[0].name === "Finalizado") {
+        setArea("")
+      }
+      else {setArea(plot.chart.getTooltipItems({ x, y })[0].name) 
+    setColor(plot.chart.getTooltipItems({ x, y })[0].data.color)}
+    });
+  }}  />
+  <p>{area === "" ? "Seleccione un intervalo" : `Responsable: ${area} `}</p></>;
 };
 
 export default IntervalBar;
