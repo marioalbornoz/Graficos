@@ -1,55 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Column} from '@ant-design/charts';
 
 const IntervalBar: React.FC = ({area, setArea,color, setColor}) => {
 
-
-  var data = [
-    {
-      // type: '分类一',
-      type: 'Finalizado',
-      values: [0, 56],
-      color: '#173B27'
-    },
-    {
-      type: 'SIN_SALDO',
-      values: [56, 60],
-      color: '#5EF0F2'
-    },
-    {
-      type: 'SIN_PKT',
-      values: [61, 67],
-      color:'#60DBBB'
-    },{
-      type: 'LPN-BLOQ',
-      values: [68, 70],
-    },
-     {
-      type: 'SKU-CERTIFICACION_CALIDAD',
-      values: [71, 73],
-    },
-    {
-      type: 'DESCUADRE_INV_WMOS/ODBMS',
-      values: [74, 79],
-    },
-    {
-      type: 'PEND_PICKING/DAÑO',
-      values: [80, 85],
-    },
-    {
-      type: 'ATRASO_PROV',
-      values: [86, 90],
-    },
-    {
-      type: 'SIN_OC',
-      values: [91, 95],
-    },
-    {
-      type: 'SIN_OLEAR',
-      values: [96, 100],
-    },
-   
-  ];
+const [data, setData] = useState([]);
+  useEffect(() => {
+    asyncFetch();
+}, []);
+const asyncFetch = () => {
+  fetch(
+    "http://localhost:8000/api/reservas"
+  )
+    .then((response) => response.json())
+    .then((json) => setData(json.data))
+    .catch((error) => {
+      console.log("fetch data failed", error);
+    });
+};
   var config = {
     data: data,
     xField: "type",
@@ -79,9 +46,6 @@ const IntervalBar: React.FC = ({area, setArea,color, setColor}) => {
     color: function color(_ref) {
       var type = _ref.type;
       let dataFilter= data.filter(la => la.type === type)
-      console.log('====================================');
-      console.log(dataFilter[0].color);
-      console.log('====================================');
       return type ? dataFilter[0].color: "#5B8FF9";
     },
     tooltip: {

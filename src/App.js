@@ -7,6 +7,10 @@ import { Container } from "@material-ui/core";
 // import VerticalBar from "./components/VerticalBar";
 import IntervalBar from "./components/IntervalBar";
 import ChartBar from "./components/ChartBar";
+import HideAppBar from "./components/TopBar";
+import MiniDrawer from "./components/MiniCajon";
+import DatePickers from "./components/Calendar";
+import MaterialUIPickers from "./components/Date";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,28 +30,51 @@ function App() {
   const classes = useStyles();
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
+      {/* <HideAppBar /> */}
+      <MiniDrawer />
       <Container maxWidth="false">
         <div className={classes.root}>
           <Grid container spacing={9}>
             <Grid items xs={1}></Grid>
-            <Grid item xs={area ? 4:10} alignContent="center" justifyContent="center">
+            <Grid
+              item
+              xs={area ? 4 : 10}
+              alignContent="center"
+              justifyContent="center"
+            >
               {/* <Paper className={classes.paper}>
                 xs=8 lore dsjndsdjdsndjsndjdn
               </Paper> */}
               {/* <VerticalBar /> */}
-              <IntervalBar area={area} setArea={setArea} color={color} setColor={setColor}/>
+              {/* <DatePickers /> */}
+              <MaterialUIPickers />
+              {/* <MaterialUIPickers /> */}
+              <IntervalBar
+                area={area}
+                setArea={setArea}
+                color={color}
+                setColor={setColor}
+              />
 
               {/* { area ? <ChartBar area={area}/> : null} */}
               {/* <Chartbar /> */}
-            </Grid><Grid item xs={area ? 6 : 0} alignContent="center" justifyContent="center">
+            </Grid>
+            <Grid
+              item
+              xs={area ? 6 : 0}
+              alignContent="center"
+              justifyContent="center"
+            >
               {/* <Paper className={classes.paper}>
                 xs=8 lore dsjndsdjdsndjsndjdn
               </Paper> */}
               {/* <VerticalBar /> */}
               {/* <IntervalBar area={area} setArea={setArea}/> */}
 
-              { area ? <ChartBar area={area} color={color} setColor={setColor}/> : null}
+              {area ? (
+                <ChartBar area={area} color={color} setColor={setColor} />
+              ) : null}
               {/* <Chartbar /> */}
             </Grid>
             <Grid items xs={1}></Grid>
