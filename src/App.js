@@ -8,8 +8,9 @@ import { Container } from "@material-ui/core";
 import IntervalBar from "./components/IntervalBar";
 import ChartBar from "./components/ChartBar";
 // import HideAppBar from "./components/TopBar";
-import MiniDrawer from "./components/MiniCajon";
+// import MiniDrawer from "./components/MiniCajon";
 import DatePicker from "./components/Date";
+import HideAppBar from "./components/TopBar";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,8 +31,8 @@ function App() {
   return (
     <>
       {/* <Navbar /> */}
-      {/* <HideAppBar /> */}
-      <MiniDrawer />
+      <HideAppBar />
+      {/* <MiniDrawer /> */}
       <Container maxWidth="false">
         <div className={classes.root}>
           <Grid container spacing={9}>

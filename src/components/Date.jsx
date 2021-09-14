@@ -13,6 +13,7 @@ export default function DatePicker() {
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
+    console.log(date);
   };
 
   return (
@@ -27,7 +28,7 @@ export default function DatePicker() {
           label="Date picker inline"
           value={selectedDate}
           defaultValue={selectedDate}
-          minDate="03/09/2021"
+          minDate="09/12/2021"
           onChange={handleDateChange}
           KeyboardButtonProps={{
             "aria-label": "change date"

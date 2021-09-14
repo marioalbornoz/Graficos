@@ -9,7 +9,7 @@ const [data, setData] = useState([]);
 }, []);
 const asyncFetch = () => {
   fetch(
-    "http://localhost:27017/api/reservas"
+    "http://192.168.240.1:27017/api/reservas"
   )
     .then((response) => response.json())
     .then((json) => setData(json.data))
