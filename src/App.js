@@ -2,15 +2,14 @@ import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 // import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import Navbar from "./components/Navbar";
+// import Navbar from "./components/Navbar";
 import { Container } from "@material-ui/core";
 // import VerticalBar from "./components/VerticalBar";
 import IntervalBar from "./components/IntervalBar";
 import ChartBar from "./components/ChartBar";
-import HideAppBar from "./components/TopBar";
+// import HideAppBar from "./components/TopBar";
 import MiniDrawer from "./components/MiniCajon";
-import DatePickers from "./components/Calendar";
-import MaterialUIPickers from "./components/Date";
+import DatePicker from "./components/Date";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -48,8 +47,7 @@ function App() {
               </Paper> */}
               {/* <VerticalBar /> */}
               {/* <DatePickers /> */}
-              <MaterialUIPickers />
-              {/* <MaterialUIPickers /> */}
+              <DatePicker />
               <IntervalBar
                 area={area}
                 setArea={setArea}
