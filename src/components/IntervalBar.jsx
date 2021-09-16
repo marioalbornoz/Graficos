@@ -90,7 +90,7 @@ const asyncFetch = () => {
     setColor(plot.chart.getTooltipItems({ x, y })[0].data.color)}
     });
   }}  />
-  <p>{area === "" ? "Seleccione un intervalo" : `Responsable: ${area} `}</p></>;
+  </>;
 };
 
 export default IntervalBar;

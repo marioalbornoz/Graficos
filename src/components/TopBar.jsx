@@ -8,6 +8,7 @@ import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 // import Box from '@material-ui/core/Box';
 // import Container from '@material-ui/core/Container';
 import Slide from '@material-ui/core/Slide';
+import logo from './../logo.png'
 
 function HideOnScroll(props) {
   const { children, window } = props;
@@ -39,7 +40,7 @@ export default function HideAppBar(props) {
       <HideOnScroll {...props}>
         <AppBar>
           <Toolbar>
-            <Typography variant="h6">Scroll to Hide App Bar</Typography>
+            <Typography variant="h6"> <img src={logo} height={30} alt="" /> Gap Otif</Typography>
           </Toolbar>
         </AppBar>
       </HideOnScroll>

@@ -63,6 +63,7 @@ const ChartBar: React.FC = ({area, color}) => {
   };
 
   return (
+    <>
     <Column
       {...config} height={600}
       onReady={(plot) => {
@@ -73,7 +74,7 @@ const ChartBar: React.FC = ({area, color}) => {
           console.log(tooltipData);
         });
       }}
-    />
+    /> <p>{area === "" ? "Seleccione un intervalo" : `área responsable: ${area} `}</p> </>
   );
 };
 
