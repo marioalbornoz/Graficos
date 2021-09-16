@@ -20,7 +20,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    paddingTop: theme.spacing(10),
+    paddingTop: theme.spacing(10)
   },
   paper: {
     padding: theme.spacing(2),
@@ -67,7 +67,7 @@ function App() {
                 xs=8 lore dsjndsdjdsndjsndjdn
               </Paper> */}
                 {/* <VerticalBar /> */}
-                {/* <DatePickers /> */}
+
                 <DatePicker />
                 <IntervalBar
                   area={area}
@@ -75,9 +75,6 @@ function App() {
                   color={color}
                   setColor={setColor}
                 />
-
-                {/* { area ? <ChartBar area={area}/> : null} */}
-                {/* <Chartbar /> */}
               </Grid>
               <Grid
                 item
@@ -85,54 +82,12 @@ function App() {
                 alignContent="center"
                 justifyContent="center"
               >
-                {/* <Paper className={classes.paper}>
-                xs=8 lore dsjndsdjdsndjsndjdn
-              </Paper> */}
-                {/* <VerticalBar /> */}
-                {/* <IntervalBar area={area} setArea={setArea}/> */}
-
                 {area ? (
                   <ChartBar area={area} color={color} setColor={setColor} />
                 ) : null}
                 {/* <Chartbar /> */}
               </Grid>
               <Grid items xs={1}></Grid>
-              {/* <Grid item xs={1}>
-              <Paper className={classes.paper}>xs=1</Paper>
-            </Grid> */}
-              {/* <Grid item xs={1}>
-              <Paper className={classes.paper}>xs=1</Paper>
-            </Grid>
-            <Grid item xs={1}>
-              <Paper className={classes.paper}>xs=1</Paper>
-            </Grid>
-            <Grid item xs={1}>
-              <Paper className={classes.paper}>xs=1</Paper>
-            </Grid>
-            <Grid item xs={1}>
-              <Paper className={classes.paper}>xs=1</Paper>
-            </Grid>
-            <Grid item xs={1}>
-              <Paper className={classes.paper}>xs=1</Paper>
-            </Grid>
-            <Grid item xs={1}>
-              <Paper className={classes.paper}>xs=1</Paper>
-            </Grid>
-            <Grid item xs={1}>
-              <Paper className={classes.paper}>xs=1</Paper>
-            </Grid>
-            <Grid item xs={1}>
-              <Paper className={classes.paper}>xs=1</Paper>
-            </Grid>
-            <Grid item xs={1}>
-              <Paper className={classes.paper}>xs=1</Paper>
-            </Grid>
-            <Grid item xs={1}>
-              <Paper className={classes.paper}>xs=1</Paper>
-            </Grid>
-            <Grid item xs={1}>
-              <Paper className={classes.paper}>xs=1</Paper>
-            </Grid> */}
             </Grid>
           </div>
         </Container>

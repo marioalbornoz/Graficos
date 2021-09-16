@@ -40,8 +40,12 @@ const asyncFetch = () => {
       content: function content(item) {
         return "".concat((item.values[1] - item.values[0]).toFixed(1), "%");
       },
-      layout: [{ type: "adjust-color" }, { type: 'element-active' }, { type: 'brush' }],
-      style: { fill: '#fff' },
+      layout: [ { type: 'element-active' }, { type: 'brush' }],
+      style: { fill: '#fff',  opacity: 1,
+      fontSize: 17,
+     fontWeight: 30,
+      shadowColor: "black",
+      shadowBlur: 3, }
     },
     color: function color(_ref) {
       var type = _ref.type;
@@ -65,9 +69,9 @@ const asyncFetch = () => {
                   >
                     <span className="g2-tooltip-marker" style={{ backgroundColor: color }}></span>
                     <span
-                      style={{ display: 'inline-flex', flex: 1, justifyContent: 'space-between' }}
+                      style={{ display: 'inline-flex', flex: 1, justifyContent: 'space-between', fontSize:15 }}
                     >
-                      <span style={{ margiRight: 16 }}>{name}:</span>
+                      <span style={{ margiRight: 16}}>{name}:</span>
                       <span className="g2-tooltip-list-item-value">{value}</span>
                     </span>
                   </li>

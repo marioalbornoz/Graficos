@@ -1,5 +1,7 @@
 import React from 'react';
 import { Column } from '@ant-design/charts';
+import {ubicarArea} from './../Helpers'
+import CustomText from './CustomText';
 
 const ChartBar: React.FC = ({area, color}) => {
   const data = [
@@ -46,13 +48,17 @@ const ChartBar: React.FC = ({area, color}) => {
       end: 0.5,
     },
     xAxis: { label: { autoRotate: false } },
-    
+
     // conversionTag: {},
     label: {
       position: "middle",
       style: {
-        fill: "#00000",
-        opacity: 0.6,
+        // fill: "#00000",
+        opacity: 1,
+        fontSize: 20,
+       fontWeight: 300,
+        shadowColor: "white",
+        shadowBlur: 3,
       },
     },
     color: color,
@@ -72,9 +78,13 @@ const ChartBar: React.FC = ({area, color}) => {
         //   const { xField } = plot.options;
           const tooltipData = plot.chart.getTooltipItems({ x, y });
           console.log(tooltipData);
+          
         });
       }}
-    /> <p>{area === "" ? "Seleccione un intervalo" : `área responsable: ${area} `}</p> </>
+    /> 
+    {/* <p>{area === "" ? "Seleccione un intervalo" : `área responsable: ${ubicarArea(area)} `}</p>  */}
+    { !area ? <p>Selecciones un intervalo</p> : <CustomText text={`${ubicarArea(area)}`} />}
+    </>
   );
 };
 
