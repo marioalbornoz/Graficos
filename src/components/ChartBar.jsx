@@ -5,10 +5,9 @@ import CustomText from './CustomText';
 import SimpleCard from './Card';
 import { Grid } from '@antv/g6-pc';
 
-const ChartBar: React.FC = ({motivo, setMotivo, color, responsable}) => {
+const ChartBar: React.FC = ({motivo, setMotivo, color, responsable, setCantidad}) => {
 
  const [datos, setDatos] = useState([]);
- const [cantidades, guardarCantidades] = useState([])
 
 
  useEffect(() => {
@@ -21,7 +20,7 @@ const asyncFetch = () => {
     .then((response) => response.json())
     .then((json) => {
       setDatos(json.semanal);
-      guardarCantidades(json.semanal);
+      setCantidad(json.semanal);
     })
     .catch((error) => {
       console.log("fetch data failed", error);
@@ -72,11 +71,7 @@ const asyncFetch = () => {
           });
         }}
       />{" "}
-      <SimpleCard
-        motivo={motivo}
-        setMotivo={setMotivo}
-        responsable={responsable}
-      />
+     
       {/* <p>{motivo === "" ? "Seleccione un intervalo" : `área responsable: ${ubicarmotivo(motivo)} `}</p>  */}
     </>
   );

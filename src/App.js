@@ -37,6 +37,8 @@ function App() {
   const [color, setColor] = useState("");
   const [detalles, setDetalles] = useState([]);
   const [fecha, setFecha] = useState("");
+
+  const [cantidad, setCantidad] = useState([])
   const classes = useStyles();
   // Tema
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: light)');
@@ -113,6 +115,7 @@ function App() {
                       color={color}
                       setColor={setColor}
                       responsable={responsable}
+                      setCantidad={setCantidad}
                     />{" "}
                   </Grid>{" "}
                   <Grid items xs={2} sm={2} style={{ margin: 100 }}>
@@ -121,6 +124,7 @@ function App() {
                       motivo={motivo}
                       setMotivo={setMotivo}
                       responsable={responsable}
+                      cantidad={cantidad}
                     />
                   </Grid>{" "}
                 </>

@@ -9,7 +9,6 @@ import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
-    width: '100%'
   },
   bullet: {
     display: 'inline-block',
@@ -24,14 +23,20 @@ const useStyles = makeStyles({
   },
 });
 
-export default function SimpleCard({motivo, setMotivo, responsable}) {
+export default function SimpleCard({motivo, setMotivo, responsable, cantidad}) {
+    // console.log(cantidad);
   const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
+  const reportMath = (arreglo) =>  {
+    console.log(arreglo);
+    const cantidad =  arreglo.map(el => el.CANTIDAD).reduce((el,acc) => el+acc, 0);
+    console.log(cantidad);
+    return (cantidad/arreglo.length);
+  }
 
 
   const handleback = (e) => {
     e.preventDefault();
-    setMotivo("")
+    setMotivo("");
   }
 
   return (
@@ -48,16 +53,16 @@ export default function SimpleCard({motivo, setMotivo, responsable}) {
           {motivo}
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
-          adjective
+          informacion
         </Typography>
         <Typography variant="body2" component="p">
-          well meaning and kindly.
+        {/* {cantidad?.reduce( (el, acc)=> el.CANTIDAD+acc.CANTIDAD, 0)} */}
           <br />
-          {'"a benevolent smile"'}
+          {cantidad ? <p>{reportMath(cantidad)} reservas como media</p> : 'sin cantidad'}
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" onClick={handleback}>Back</Button>
+        <Button size="small" onClick={handleback}>Atras</Button>
       </CardActions>
     </Card>
   );
