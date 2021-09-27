@@ -1,51 +1,58 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { makeStyles } from '@material-ui/core/styles';
+import Tooltip from '@material-ui/core/Tooltip';
+import moment from 'moment';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    alignContent:'center',
+    marginLeft:80,
     '& > *': {
       margin: theme.spacing(1),
     },
   },
+  absolute: {
+    position: 'absolute',
+    bottom: theme.spacing(2),
+    right: theme.spacing(3),
+  },
 }));
 
-export default function BotonDate() {
+export default function BotonDate({detalles,fecha, setFecha, setMotivo}) {
   const classes = useStyles();
+
+  const [presionado, setPresionado] = useState(false)
+
+  const handleclick = (date) => {
+    setMotivo("")
+    setPresionado(true)
+    setFecha(date)
+    console.log(date);
+  }
 
   return (
     <div className={classes.root}>
-      {/* <ButtonGroup size="small" aria-label="small outlined button group">
-        <Button>One</Button>
-        <Button>Two</Button>
-        <Button>Three</Button>
-      </ButtonGroup> */}
+      GAP
       <ButtonGroup
         color="secondary"
         aria-label="outlined secondary button group"
-      >
-        <Button>70%</Button>
-        <Button>73%</Button>
-        <Button>82%</Button>
-        <Button>80%</Button>
-        <Button>76%</Button>
-        <Button>89%</Button>
-        <Button>91%</Button>
-        <Button>82%</Button>
-        <Button>87%</Button>
-        <Button>80%</Button>
-        <Button>99%</Button>
-        <Button>79%</Button>
+      > 
+        {detalles?.map((el) => (
+          <Tooltip title={el?.FECHA_CARGA}>
+            <Button
+              onClick={() => handleclick(el?.FECHA_CARGA)}
+              // style={{ backgroundColor: "black" }}
+            >
+              {el?.GAP.toFixed(2)}%
+            </Button>
+          </Tooltip>
+        ))}
       </ButtonGroup>
-      {/* <ButtonGroup size="large" color="primary" aria-label="large outlined primary button group">
-        <Button>One</Button>
-        <Button>Two</Button>
-        <Button>Three</Button>
-      </ButtonGroup> */}
     </div>
   );
 }

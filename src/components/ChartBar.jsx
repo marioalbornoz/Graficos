@@ -1,48 +1,38 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Column } from '@ant-design/charts';
 import {ubicarArea} from './../Helpers'
 import CustomText from './CustomText';
+import SimpleCard from './Card';
+import { Grid } from '@antv/g6-pc';
 
-const ChartBar: React.FC = ({area, color}) => {
-  const data = [
-    {
-      type: '12-09',
-      sales: 38,
-    },
-    {
-      type: '11-09',
-      sales: 52,
-    },
-    {
-      type: '10-09',
-      sales: 0,
-    },
-    {
-      type: '09-09',
-      sales: 12,
-    },
-    {
-      type: '08-09',
-      sales: 48,
-    },
-    {
-      type: '07-09',
-      sales: 38,
-    },
-    {
-      type: '06-09',
-      sales: 38,
-    },
-    {
-      type: '05-09',
-      sales: 38,
-    },
-  ];
+const ChartBar: React.FC = ({motivo, setMotivo, color, responsable}) => {
+
+ const [datos, setDatos] = useState([]);
+ const [cantidades, guardarCantidades] = useState([])
+
+
+ useEffect(() => {
+  asyncFetch();
+}, []);
+const asyncFetch = () => {
+  fetch(
+    `http://localhost:9001/api/reserva/motivo/${motivo}`
+  )
+    .then((response) => response.json())
+    .then((json) => {
+      setDatos(json.semanal);
+      guardarCantidades(json.semanal);
+    })
+    .catch((error) => {
+      console.log("fetch data failed", error);
+    });
+};
+
 
   const config = {
-    data,
-    xField: "type",
-    yField: "sales",
+    data:datos,
+    xField: "FECHA",
+    yField: "CANTIDAD",
     slider: {
       start: 0.1,
       end: 0.5,
@@ -63,27 +53,31 @@ const ChartBar: React.FC = ({area, color}) => {
     },
     color: color,
     meta: {
-      type: { alias: "Fecha" },
-      sales: { alias: "Sales" },
+      FECHA: { alias: "Fecha" },
+      CANTIDAD: { alias: "CANTIDAD" },
     },
   };
 
   return (
     <>
-    <Column
-      {...config} height={600}
-      onReady={(plot) => {
-        plot.on('plot:click', (evt) => {
-          const { x, y } = evt;
-        //   const { xField } = plot.options;
-          const tooltipData = plot.chart.getTooltipItems({ x, y });
-          console.log(tooltipData);
-          
-        });
-      }}
-    /> 
-    {/* <p>{area === "" ? "Seleccione un intervalo" : `área responsable: ${ubicarArea(area)} `}</p>  */}
-    { !area ? <p>Selecciones un intervalo</p> : <CustomText text={`${ubicarArea(area)}`} />}
+      <Column
+        {...config}
+        height={600}
+        onReady={(plot) => {
+          plot.on("plot:click", (evt) => {
+            const { x, y } = evt;
+            //   const { xField } = plot.options;
+            const tooltipData = plot.chart.getTooltipItems({ x, y });
+            console.log(tooltipData);
+          });
+        }}
+      />{" "}
+      <SimpleCard
+        motivo={motivo}
+        setMotivo={setMotivo}
+        responsable={responsable}
+      />
+      {/* <p>{motivo === "" ? "Seleccione un intervalo" : `área responsable: ${ubicarmotivo(motivo)} `}</p>  */}
     </>
   );
 };

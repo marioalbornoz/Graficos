@@ -16,6 +16,7 @@ import BotonDate from "./components/BotonDate";
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import SimpleCard from "./components/Card";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,8 +31,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function App() {
-  const [area, setArea] = useState("")
-  const [color, setColor] = useState("")
+  const [motivo, setMotivo] = useState("");
+  const [responsable, guardarResponsable] = useState("");
+
+  const [color, setColor] = useState("");
+  const [detalles, setDetalles] = useState([]);
+  const [fecha, setFecha] = useState("");
   const classes = useStyles();
   // Tema
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: light)');
@@ -54,40 +59,72 @@ function App() {
         {/* <MiniDrawer /> */}
         <Container maxWidth="false">
           <div className={classes.root}>
-            <BotonDate />
+            {motivo ? null : (
+              <Grid container>
+                {" "}
+                <Grid items xs={10} sm={10} lg={10} xl={8} >
+                  <BotonDate
+                    detalles={detalles}
+                    fecha={fecha}
+                    setFecha={setFecha}
+                    setMotivo={setMotivo}
+                  />
+                </Grid>{" "}
+                <Grid items xs={2} sm={12} lg={2} xl={4} >
+                  {" "}
+                  <DatePicker fecha={fecha} setFecha={setFecha} />{" "}
+                </Grid>
+                
+              </Grid>
+            )}
             <Grid container spacing={9}>
-              <Grid items xs={1}></Grid>
-              <Grid
-                item
-                xs={area ? 4 : 10}
-                alignContent="center"
-                justifyContent="center"
-              >
-                {/* <Paper className={classes.paper}>
-                xs=8 lore dsjndsdjdsndjsndjdn
-              </Paper> */}
-                {/* <VerticalBar /> */}
-
-                <DatePicker />
-                <IntervalBar
-                  area={area}
-                  setArea={setArea}
-                  color={color}
-                  setColor={setColor}
-                />
-              </Grid>
-              <Grid
-                item
-                xs={area ? 6 : 0}
-                alignContent="center"
-                justifyContent="center"
-              >
-                {area ? (
-                  <ChartBar area={area} color={color} setColor={setColor} />
-                ) : null}
-                {/* <Chartbar /> */}
-              </Grid>
-              <Grid items xs={1}></Grid>
+              {!motivo ? (
+                <>
+                  <Grid items xs={1} style={{ marginTop: 30 }}></Grid>
+                  <Grid
+                    item
+                    xs={motivo ? 4 : 10}
+                    alignContent="center"
+                    justifyContent="center"
+                    style={{ marginTop: 30 }}
+                  >
+                    <IntervalBar
+                      motivo={motivo}
+                      setMotivo={setMotivo}
+                      color={color}
+                      setColor={setColor}
+                      detalles={detalles}
+                      setDetalles={setDetalles}
+                      fecha={fecha}
+                      guardarResponsable={guardarResponsable}
+                    />
+                  </Grid>
+                  <Grid items xs={1} style={{ marginTop: 30 }}></Grid>
+                </>
+              ) : (
+                <>
+                  {" "}
+                  <Grid items xs={1} style={{ marginTop: 100 }}></Grid>{" "}
+                  <Grid items xs={8} sm={6} style={{ marginTop: 100 }}>
+                    {" "}
+                    <ChartBar
+                      motivo={motivo}
+                      setMotivo={setMotivo}
+                      color={color}
+                      setColor={setColor}
+                      responsable={responsable}
+                    />{" "}
+                  </Grid>{" "}
+                  <Grid items xs={2} sm={2} style={{ margin: 100 }}>
+                    {/* { !motivo ? <p>Selecciones un intervalo</p> : <CustomText text={`${(motivo)}`} />} */}
+                    <SimpleCard
+                      motivo={motivo}
+                      setMotivo={setMotivo}
+                      responsable={responsable}
+                    />
+                  </Grid>{" "}
+                </>
+              )}
             </Grid>
           </div>
         </Container>

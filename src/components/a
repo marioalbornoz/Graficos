@@ -1,0 +1,19 @@
+{area ? (
+                  <>
+                    {" "}
+                    <Grid items xs={1}>
+                      <SimpleCard />
+                    </Grid>
+                    <Grid items xs={8}>
+                      {" "}
+                      <ChartBar
+                        area={area}
+                        color={color}
+                        setColor={setColor}
+                      />{" "}
+                    </Grid>{" "}
+                    <Grid items xs={1}>
+                      <SimpleCard />
+                    </Grid>{" "}
+                  </>
+                ) : null}
