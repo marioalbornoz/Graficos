@@ -51,7 +51,7 @@ const [cargando, setCargando] = useState(false)
         autoHide: false,
         autoEllipsis: false,
       },
-      tickCount: data.length,
+      tickCount: data?.length,
     },
     isRange: true,
     seriesField: "type",
@@ -131,7 +131,7 @@ const [cargando, setCargando] = useState(false)
         <Grid item xs={0}></Grid>
       </Grid>
     </div>
-  ) : data.length > 0 ? (
+  ) : data ? (
     grafico
   ) : (
     <h2 style={{ textAlign:'center'}}>No hay datos cargados para este dia</h2>
