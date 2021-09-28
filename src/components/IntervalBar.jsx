@@ -20,7 +20,8 @@ const IntervalBar: React.FC = ({ setMotivo, setColor, detalles, setDetalles, fec
   const classes = useStyles();
 
 const [data, setData] = useState([]);
-const [cargando, setCargando] = useState(false)
+const [cargando, setCargando] = useState(false);
+const [error, guardarError] = useState("")
 
 
   useEffect(() => {
@@ -38,6 +39,7 @@ const [cargando, setCargando] = useState(false)
       })
       .catch((error) => {
         console.log("fetch data failed", error);
+        guardarError(error)
       });
   };
 
@@ -107,7 +109,7 @@ const [cargando, setCargando] = useState(false)
     },
   };
 
-  const grafico = <> <Column {...config} height={600}  onReady={(plot) => {
+  const grafico = data ?  <> <Column {...config} height={600}  onReady={(plot) => {
     plot.chart.on('plot:click', (evt) => {
       const { x, y } = evt;
       setMotivo(evt.data?.data.type);
@@ -115,7 +117,7 @@ const [cargando, setCargando] = useState(false)
       guardarResponsable(evt.data?.data.responsable);
     });
   }}  />
-  </>
+  </> : null;
 
   return cargando ? (
     <div className={classes.root}>

@@ -33,19 +33,20 @@ HideOnScroll.propTypes = {
   window: PropTypes.func,
 };
 
-export default function HideAppBar(props) {
+export default function HideAppBar(props, {fecha}) {
   return (
     <React.Fragment>
       <CssBaseline />
       <HideOnScroll {...props}>
         <AppBar>
           <Toolbar>
-            <Typography variant="h6"> <img src={logo} height={30} alt="" /> Gap Otif</Typography>
+            <Typography variant="h5" style={{ fontWeight: "bold" }}>
+              <img src={logo} height={38} alt="" /> GAP DADC
+            </Typography>
           </Toolbar>
         </AppBar>
       </HideOnScroll>
       <Toolbar />
-      
     </React.Fragment>
   );
 }

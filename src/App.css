@@ -45,3 +45,12 @@
 /* .MuiTooltip-poper{
   background-color: black !important;
 } */
+
+
+.holi::before{
+  background-color: rgb(247, 225, 31) !important;
+}
+
+/* .holi:focus {
+  outline: 2px solid black;
+} */

@@ -58,7 +58,7 @@ export default function SimpleCard({motivo, setMotivo, responsable, cantidad}) {
         <Typography variant="body2" component="p">
         {/* {cantidad?.reduce( (el, acc)=> el.CANTIDAD+acc.CANTIDAD, 0)} */}
           <br />
-          {cantidad ? <p>{reportMath(cantidad)} reservas como media</p> : 'sin cantidad'}
+          {/* {cantidad ? <p>{reportMath(cantidad)} reservas como media para los ultimos {cantidad.length} dias hábiles</p> : 'sin cantidad'} */}
         </Typography>
       </CardContent>
       <CardActions>
