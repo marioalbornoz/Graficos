@@ -15,7 +15,7 @@ const ChartBar: React.FC = ({motivo, setMotivo, color, responsable, setCantidad}
 }, []);
 const asyncFetch = () => {
   fetch(
-    `http://localhost:9001/api/reserva/motivo/${motivo}`
+    `http://localhost:5005/api/reserva/motivo/${motivo}`
   )
     .then((response) => response.json())
     .then((json) => {

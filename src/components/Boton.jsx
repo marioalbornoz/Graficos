@@ -81,9 +81,10 @@ export default function Boton({detalles,fecha, setFecha, setMotivo}) {
   return (
     <div style={{ paddingLeft:'8%', paddingTop:30, paddingBottom:0 }}>
       {detalles?.map((el) => (
-        <BootstrapButton
+        el.FECHA_CARGA ===fecha  ? (<BootstrapButton
           variant="contained"
           color="primary"
+          style={{backgroundColor:'#e1f5fe'}}
           disableRipple
           className={classes.margin}
           onClick={() => handleclick(el?.FECHA_CARGA)}
@@ -92,13 +93,32 @@ export default function Boton({detalles,fecha, setFecha, setMotivo}) {
             <div style={{
                 display:'flex', alignItems:'center', flexDirection:'column'
             }}>
-            {el.FECHA_CARGA === fecha ? <p className="animate__animated animate__flash" style={{marginTop:10, marginBottom:0}}>GAP <span style={{fontWeight:'bold'}}>{el?.GAP.toFixed(2)}%</span></p>: null}
+            {/* <p className="animate__animated animate__flash" style={{marginTop:10, marginBottom:0}}>GAP <span style={{fontWeight:'bold'}}>{el?.GAP.toFixed(2)}%</span></p> */}
             <p style={{color:'gray', fontWeight:'bolder', marginTop:10, marginBottom:5}}>{el?.FECHA_CARGA}</p>
-            <p style={{fontSize:15, marginTop:5, marginBottom:10}}>{el?.OTIF}%</p>
+            {el.FECHA_CARGA === fecha ? <p className="animate__animated animate__flash" style={{marginTop:10, marginBottom:0}}>GAP <span style={{fontWeight:'bold'}}>{el?.GAP.toFixed(2)}%</span></p>: null}
+            <p style={{fontSize:15, marginTop:5, marginBottom:10}}>OTIF {el?.OTIF}%</p>
                
             </div>
           }
-        </BootstrapButton>
+        </BootstrapButton>) : (<BootstrapButton
+        variant="contained"
+        color="primary"
+        disableRipple
+        className={classes.margin}
+        onClick={() => handleclick(el?.FECHA_CARGA)}
+      >
+        {
+          <div style={{
+              display:'flex', alignItems:'center', flexDirection:'column'
+          }}>
+          {/* {el.FECHA_CARGA === fecha ? <p className="animate__animated animate__flash" style={{marginTop:10, marginBottom:0}}>GAP <span style={{fontWeight:'bold'}}>{el?.GAP.toFixed(2)}%</span></p>: null} */}
+          <p style={{color:'gray', fontWeight:'bolder', marginTop:10, marginBottom:5}}>{el?.FECHA_CARGA}</p>
+          <p style={{marginTop:10, marginBottom:0}}>GAP <span style={{fontWeight:''}}>{el?.GAP.toFixed(2)}%</span></p>
+          <p style={{fontSize:15, marginTop:5, marginBottom:10}}>OTIF {el?.OTIF}%</p>
+             
+          </div>
+        }
+      </BootstrapButton>)
       ))}
     </div>
   );

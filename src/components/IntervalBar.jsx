@@ -30,7 +30,7 @@ const [error, guardarError] = useState("")
   }, [fecha]);
   const asyncFetch = () => {
     setCargando(true)
-    fetch(`http://localhost:9001/api/reserva/${fecha || moment().subtract(1, 'days').format("YYYY-MM-DD")}`)
+    fetch(`http://localhost:5005/api/reserva/${fecha || moment().subtract(1, 'days').format("YYYY-MM-DD")}`)
       .then((response) => response.json())
       .then((json) => {
         setData(json.data);
@@ -56,6 +56,7 @@ const [error, guardarError] = useState("")
       tickCount: data?.length,
     },
     isRange: true,
+    // isPercent: true,
     seriesField: "type",
     label: {
       position: "middle",
