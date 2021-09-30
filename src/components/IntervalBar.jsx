@@ -30,7 +30,8 @@ const [error, guardarError] = useState("")
   }, [fecha]);
   const asyncFetch = () => {
     setCargando(true)
-    fetch(`http://localhost:5005/api/reserva/${fecha || moment().subtract(1, 'days').format("YYYY-MM-DD")}`)
+    console.log(`${process.env.REACT_APP_LOCAL}/api/reserva/${fecha || moment().subtract(1, 'days').format("YYYY-MM-DD")}`);
+    fetch(`${process.env.REACT_APP_LOCAL}/api/reserva/${fecha || moment().subtract(1, 'days').format("YYYY-MM-DD")}`)
       .then((response) => response.json())
       .then((json) => {
         setData(json.data);
